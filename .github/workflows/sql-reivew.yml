@@ -1,0 +1,44 @@
+on: [pull_request]
+
+jobs:
+  echoall:
+    runs-on: ubuntu-latest
+    name: Echo All
+    steps:
+      - name: echo event for PR
+        run: |
+          cat $GITHUB_EVENT_PATH
+
+  sql-review:
+    runs-on: ubuntu-latest
+    name: SQL Review
+    if: ${{ github.env.ACT }} # Auto added by act
+
+    steps:
+      - uses: actions/checkout@v3
+
+      # - name: Commands
+      #   run: ls -ltrha; which git; git branch
+
+
+      - name: Find Files Changed
+        uses: umani/changed-files@v4.0.0
+        id: files-changed
+        with:
+          repo-token: ${{ github.token }}
+          pattern: '^bytebase/migrations/.*\.sql$'
+          pr-number: 1
+      - name: Changed Files list
+        run: |
+          echo ${{ steps.files-changed.outputs.files_created}};
+          echo ${{ steps.files-changed.outputs.files_updated}};
+          echo ${{ steps.files-changed.outputs.files_deleted}};
+
+
+      # - name: Check SQL
+      #   uses: bytebase/sql-review-action@1.0.0
+      #   with:
+      #     override-file-path: "bytebase/rules/bb.sql-review.dev.yml"
+      #     # template-id: "<SQL review rule template id>"
+      #     database-type: "POSTGRES"
+      #     file-pattern: ^bytebase/migrations/.*\.sql$

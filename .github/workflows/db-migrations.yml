@@ -1,0 +1,71 @@
+name: PostgreSQL Migration on PR Comment
+
+on:
+  issue_comment:
+    types: [created]
+
+jobs:
+  echoall:
+    runs-on: ubuntu-latest
+    name: Echo All
+    steps:
+      - name: echo event for issue
+        run: |
+          cat $GITHUB_EVENT_PATH
+
+  echo:
+    runs-on: ubuntu-latest
+    if: ${{ env.ACT && false }}
+    steps:
+      - name: "echo"
+        run: echo "Uncomment below file"
+  # check-comment:
+  #   runs-on: self-hosted
+
+  #   steps:
+  #   - name: Check PR comment
+  #     id: check-comment
+  #     run: |
+  #       comment="${{ github.event.comment.body }}"
+  #       if [[ "$comment" == "/db-migrate ok" ]]; then
+  #         echo "::set-output name=run_migration::true"
+  #       else
+  #         echo "::set-output name=run_migration::false"
+  #       fi
+  #     shell: bash
+
+  #   outputs:
+  #     run_migration: ${{ steps.check-comment.outputs.run_migration }}
+
+  # migrate:
+  #   needs: check-comment
+  #   if: needs.check-comment.outputs.run_migration == 'true' && github.event.issue.pull_request
+  #   runs-on: ubuntu-latest
+
+  #   steps:
+  #   - name: Checkout code
+  #     uses: actions/checkout@v2
+
+  #   # Set up database, if necessary
+  #   - name: Setup PostgreSQL
+  #     uses: harmon758/postgresql-action@v1
+  #     with:
+  #       postgresql version: '12'
+  #       postgresql db: yourdbname
+  #       postgresql user: youruser
+  #       postgresql password: yourpassword
+
+  #   # Replace the next steps with steps specific to atlas.io or whatever migration tool you use
+  #   - name: Setup migration tool
+  #     run: |
+  #       # This could be setting up atlas.io CLI or whatever tool you're using.
+
+  #   - name: Run migrations
+  #     run: |
+  #       # Here, run the command to apply migrations using atlas.io or your migration tool.
+  #       echo "Run migration"
+  #       # atlas.io migrate up # This is a hypothetical command
+
+  #   - name: Run tests (optional)
+  #     run: |
+  #       # You might have some tests that ensure the migration didn't break anything.
