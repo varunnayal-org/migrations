@@ -13,12 +13,6 @@ jobs:
         run: |
           cat $GITHUB_EVENT_PATH
 
-  echo:
-    runs-on: ubuntu-latest
-    if: ${{ env.ACT && false }}
-    steps:
-      - name: "echo"
-        run: echo "Uncomment below file"
   # check-comment:
   #   runs-on: self-hosted
 
