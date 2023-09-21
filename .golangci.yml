@@ -1,0 +1,41 @@
+linters-settings:
+  gofumpt:
+    lang-version: "1.21"
+  gocyclo:
+    min-complexity: 20
+  nakedret:
+    max-func-lines: 1
+  revive:
+    rules:
+      - name: var-naming
+        severity: warning
+        disabled: false
+        arguments:
+          - ["ID"]
+  wsl:
+    force-case-trailing-whitespace: 1
+  govet:
+    enable:
+      - nilness
+linters:
+  enable:
+    - lll
+    - funlen
+    - gocritic
+    - gocyclo
+    - goimports
+    - gomnd
+    - gosec
+    - revive
+    - nakedret
+    - nolintlint
+    - unconvert
+    - wsl
+    - gofumpt
+    - unparam
+
+issues:
+  exclude-rules:
+    - linters:
+        - lll
+      source: "^//go:generate "
