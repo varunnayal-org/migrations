@@ -14,6 +14,7 @@ func main() {
 	stmts, err := New("postgres").Load(
 		Enum{Name: "category_name_enum", List: enum.Electricity.All()},
 		&entity.Category{},
+		&entity.User{},
 	)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "failed to load gorm schema: %v\n", err)
