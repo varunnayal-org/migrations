@@ -8,6 +8,8 @@ jobs:
   echoall:
     runs-on: ubuntu-latest
     name: Echo All
+    # comment should be on pr not on issue
+    if: github.event.issue.pull_request != null
     steps:
       - name: echo event for issue
         run: |

@@ -35,11 +35,10 @@ jobs:
           echo ${{ steps.files-changed.outputs.files_updated}};
           echo ${{ steps.files-changed.outputs.files_deleted}};
 
-
-      # - name: Check SQL
-      #   uses: bytebase/sql-review-action@1.0.0
-      #   with:
-      #     override-file-path: "bytebase/rules/bb.sql-review.dev.yml"
-      #     # template-id: "<SQL review rule template id>"
-      #     database-type: "POSTGRES"
-      #     file-pattern: ^bytebase/migrations/.*\.sql$
+      - name: Check SQL
+        uses: bytebase/sql-review-action@1.0.0
+        with:
+          override-file-path: "bytebase/rules/bb.sql-review.dev.yml"
+          # template-id: "<SQL review rule template id>"
+          database-type: "POSTGRES"
+          file-pattern: ^bytebase/migrations/.*\.sql$
