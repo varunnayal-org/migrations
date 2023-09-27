@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"strings"
 
 	"ariga.io/atlas-go-sdk/recordriver"
 	"gorm.io/driver/postgres"
@@ -81,5 +82,20 @@ func (l *Loader) Load(modelsOrStatements ...any) (string, error) {
 		return "", err
 	}
 
-	return s.Stmts(), nil
+	stmtExistMap := make(map[string]bool)
+
+	var sb strings.Builder
+
+	for _, stmt := range s.Statements {
+		if stmtExistMap[stmt] {
+			continue
+		}
+
+		stmtExistMap[stmt] = true
+
+		sb.WriteString(stmt)
+		sb.WriteString(";\n")
+	}
+
+	return sb.String(), nil
 }
