@@ -16,6 +16,7 @@ func main() {
 		Enum{Name: "user_status_enum", List: enum.UserStatusActive.All()},
 		&entity.Category{},
 		&entity.User{},
+		&entity.Friends{},
 	)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "failed to load gorm schema: %v\n", err)
