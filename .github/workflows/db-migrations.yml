@@ -14,6 +14,24 @@ jobs:
       - name: echo event for issue
         run: |
           cat $GITHUB_EVENT_PATH
+  echoapipath:
+    runs-on: ubuntu-latest
+    name: Echo All
+    # comment should be on pr not on issue
+    if: github.event.issue.pull_request != null
+    steps:
+      - name: echo event for issue
+        run: |
+          cat $GITHUB_API_URL
+
+  echoenv:
+    runs-on: ubuntu-latest
+    name: Echo All
+    # comment should be on pr not on issue
+    if: github.event.issue.pull_request != null
+    steps:
+      - name: echo event for issue
+        run: env
 
   # check-comment:
   #   runs-on: self-hosted
