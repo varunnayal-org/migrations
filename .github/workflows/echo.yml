@@ -1,4 +1,4 @@
-name: PostgreSQL Migration on PR Comment
+name: Echo Variables
 
 on:
   issue_comment:
@@ -8,8 +8,6 @@ jobs:
   echoall:
     runs-on: ubuntu-latest
     name: Echo Path
-    # comment should be on pr not on issue
-    # if: github.event.issue.pull_request != null
     steps:
       - name: echo event for issue
         run: |
@@ -18,8 +16,6 @@ jobs:
   echoenv:
     runs-on: ubuntu-latest
     name: Echo Env
-    # comment should be on pr not on issue
-    # if: github.event.issue.pull_request != null
     steps:
       - name: echo event for issue
         run: env
@@ -27,7 +23,6 @@ jobs:
   echoallif:
     runs-on: ubuntu-latest
     name: Echo Path
-    # comment should be on pr not on issue
     if: github.event.issue.pull_request != null
     steps:
       - name: echo event for issue
