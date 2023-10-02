@@ -15,7 +15,8 @@ jobs:
         uses: ./tmp/github-action/repo
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          debug: ${{ env.DEBUG }}
+          # debug: ${{ env.DEBUG }} # defaults to false
+          # pr-base-branch: 'main'  # defaults to main
           migration-db-url: ${{ secrets.MIGRATION_DB_URL }}
-          migration-dir: ${{ env.MIGRATION_DIR }}
+          migration-dir: ${{ env.MIGRATION_DIR }} # default to "migrations"
           approval-teams: ${{ env.MIGRATION_APPROVAL_GITHUB_TEAMS }}
