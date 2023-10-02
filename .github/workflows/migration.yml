@@ -1,0 +1,26 @@
+name: DB Migration Approvals
+
+on:
+  issue_comment:
+    types: [created]
+
+jobs:
+  db-migration-approval-flow:
+    runs-on: ubuntu-latest
+    # if: github.event.issue.pull_request != null && startsWith(github.event.comment.body, '/migrate')
+    name: DB Migration
+    steps:
+      - name: EnvPrinting
+        run: env
+      # - name: Checkout repository
+      #   uses: actions/checkout@v2
+      # - name: Approval check and migration run flow
+      #   # uses: ./tmp/github-action/repo
+      #   uses: ./../db-migration-action
+      #   with:
+      #     github-token: ${{ secrets.GITHUB_TOKEN }}
+      #     # debug: ${{ env.DEBUG }} # defaults to false
+      #     # pr-base-branch: 'main'  # defaults to main
+      #     migration-db-url: ${{ secrets.MIGRATION_DB_URL }}
+      #     migration-dir: ${{ env.MIGRATION_DIR }} # default to "migrations"
+      #     approval-teams: ${{ env.MIGRATION_APPROVAL_GITHUB_TEAMS }}
