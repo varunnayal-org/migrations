@@ -30,3 +30,8 @@ EOL
 ```
 
 Follow step 2 to 4 from above.
+
+
+## UI
+
+File name format: `{{ENV_ID}}/{{DB_NAME}}/{{TYPE}}/{{VERSION}}.sql` i.e [migrations/test/d1/ddl/*.sql](./migrations/test/d1/ddl)
