@@ -23,7 +23,7 @@ tmp/*
 __debug*
 
 bin
-tmp
+# tmp
 coverage
 .DS_Store
 .air

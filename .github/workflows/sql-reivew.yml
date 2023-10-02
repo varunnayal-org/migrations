@@ -1,14 +1,6 @@
 on: [pull_request]
 
 jobs:
-  echoall:
-    runs-on: ubuntu-latest
-    name: Echo All
-    steps:
-      - name: echo event for PR
-        run: |
-          cat $GITHUB_EVENT_PATH
-
   sql-review:
     runs-on: ubuntu-latest
     name: SQL Review
