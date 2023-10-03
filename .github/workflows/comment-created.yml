@@ -1,4 +1,4 @@
-name: PostgreSQL Migration on PR Comment
+name: PR Comment Created Echo
 
 on:
   issue_comment:
@@ -8,6 +8,8 @@ jobs:
   echoenv:
     runs-on: ubuntu-latest
     name: Echo Env
+    env:
+      MY_TOKEN_GITHUB: ${{ secrets.GITHUB_TOKEN }}
     steps:
       - name: echo event for issue
         run: env
