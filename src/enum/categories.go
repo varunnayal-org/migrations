@@ -19,3 +19,7 @@ func (c Category) All() []string {
 		string(Loan),
 	}
 }
+
+func (c Category) Name() string {
+	return "category_name_enum"
+}

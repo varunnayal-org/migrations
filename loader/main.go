@@ -12,8 +12,8 @@ import (
 
 func main() {
 	stmts, err := New("postgres").Load(
-		Enum{Name: "category_name_enum", List: enum.Electricity.All()},
-		Enum{Name: "user_status_enum", List: enum.UserStatusActive.All()},
+		enum.Electricity,
+		enum.UserStatusActive,
 		&entity.Category{},
 		&entity.User{},
 		&entity.Friends{},
