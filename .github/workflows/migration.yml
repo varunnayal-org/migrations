@@ -14,9 +14,12 @@ jobs:
         uses: varunnayal-org/db-migration-action@feature-test
         # uses: ./../db-migration-action
         with:
-          github-token: ${{ secrets.TOKEN_GITHUB }}
+          repo-token: ${{ secrets.TOKEN_GITHUB }}
           # debug: ${{ env.DEBUG }} # defaults to false
           # pr-base-branch: 'main'  # defaults to main
           migration-db-url: ${{ secrets.MIGRATION_DB_URL }}
           migration-dir: './migrations/test/d1/ddl' #${{ env.MIGRATION_DIR }} # default to "migrations"
           approval-teams: "dba,data"
+        env:
+          TOKEN_GITHUB: ${{ secrets.TOKEN_GITHUB }}
+          TOKEN_GITHUB_ORIG: ${{ secrets.GITHUB_TOKEN }}
