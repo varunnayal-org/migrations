@@ -1,0 +1,20 @@
+name: PostgreSQL Migration on PR Comment
+
+on:
+  issue_comment:
+    types: [created]
+
+jobs:
+  echoenv:
+    runs-on: ubuntu-latest
+    name: Echo Env
+    steps:
+      - name: echo event for issue
+        run: env
+  echoall:
+    runs-on: ubuntu-latest
+    name: Echo Path
+    steps:
+      - name: echo event for issue
+        run: |
+          cat $GITHUB_EVENT_PATH
