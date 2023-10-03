@@ -10,9 +10,11 @@ jobs:
     if: github.event.issue.pull_request != null && startsWith(github.event.comment.body, '/migrate')
     name: DB Migration
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
       - name: Approval check and migration run flow
-        uses: varunnayal-org/db-migration-action@feature-test
-        # uses: ./../db-migration-action
+        # uses: varunnayal-org/db-migration-action@feature-test
+        uses: ./tmp/github-action/repo
         with:
           repo-token: ${{ secrets.TOKEN_GITHUB }}
           # debug: ${{ env.DEBUG }} # defaults to false

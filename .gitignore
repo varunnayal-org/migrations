@@ -17,13 +17,13 @@ bin/*
 vendor/
 
 .env
-tmp/*
+# tmp/*
 
 # VS code build
 __debug*
 
 bin
-tmp
+# tmp
 coverage
 .DS_Store
 .air
