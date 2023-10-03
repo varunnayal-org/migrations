@@ -15,3 +15,7 @@ func (u UserStatus) All() []string {
 		string(UserStatusInactive),
 	}
 }
+
+func (u UserStatus) Name() string {
+	return "user_status_enum"
+}

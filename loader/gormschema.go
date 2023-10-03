@@ -9,9 +9,9 @@ import (
 	"gorm.io/gorm"
 )
 
-type Enum struct {
-	Name string
-	List []string
+type IEnum interface {
+	Name() string
+	All() []string
 }
 
 // New returns a new Loader.
@@ -54,7 +54,7 @@ func (l *Loader) Load(modelsOrStatements ...any) (string, error) {
 	// loop over modelsOrStatements
 	for i := 0; i < len(modelsOrStatements); i++ {
 		switch v := modelsOrStatements[i].(type) {
-		case Enum:
+		case IEnum:
 			stmt := fmt.Sprintf(`
 			DO $$ BEGIN
 				IF NOT EXISTS (SELECT 1 FROM pg_type WHERE typname = '%s') THEN
@@ -63,7 +63,7 @@ func (l *Loader) Load(modelsOrStatements ...any) (string, error) {
 			EXCEPTION
 				WHEN duplicate_object THEN null;
 			END $$
-			`, v.Name, v.Name, toString(v.List))
+			`, v.Name(), v.Name(), toString(v.All()))
 			db.Exec(stmt)
 
 		case string:
